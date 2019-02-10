@@ -1,0 +1,10 @@
+.row
+  .col-md-9
+    = render 'list'
+  .col-md-3
+    = current_user.decorate.balance
+    %button.btn.btn-primary{"data-target" => '#new-modal', 'data-toggle' => 'modal', type: 'button'}
+      Transfer
+
+= render 'shared/modal', title: 'New transfer' do
+  = render 'transfers/form'

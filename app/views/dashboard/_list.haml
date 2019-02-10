@@ -1,0 +1,16 @@
+%table.table.transactions-list
+  %thead
+    %tr
+      %th{scope: 'col'}= 'ID'
+      %th{scope: 'col'}= 'Date'
+      %th{scope: 'col'}= 'Amount'
+      %th{scope: 'col'}= 'Ref'
+      %th{scope: 'col'}= 'Description'
+  %tbody
+    - @transactions.each_with_index do |transaction|
+      %tr
+        %td= transaction.id
+        %td= transaction.created_at
+        %td= transaction.amount
+        %td= transaction.refferer
+        %td= transaction.description

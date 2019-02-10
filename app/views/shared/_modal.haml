@@ -1,0 +1,9 @@
+#new-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'new-modal-label', role: 'dialog', tabindex: '-1'}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#new-modal-label.modal-title= title
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        = yield
