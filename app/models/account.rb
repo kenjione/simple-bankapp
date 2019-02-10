@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, inverse_of: :account
 
   has_many :financial_transactions, dependent: :destroy
 

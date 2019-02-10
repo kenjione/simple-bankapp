@@ -6,7 +6,7 @@ class Transfer
     :receiver_id,
     :sender_id
 
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :receiver_id, presence: true
   validates :sender_id, presence: true
 
@@ -14,11 +14,11 @@ class Transfer
   validate :sender_positive_balance
 
   def sender
-    @sender ||= Account.find(sender_id)
+    @sender ||= Account.find_by(id: sender_id)
   end
 
   def receiver
-    @receiver ||= Account.find(receiver_id)
+    @receiver ||= Account.find_by(id: receiver_id)
   end
 
   def call
@@ -51,12 +51,12 @@ class Transfer
   private
 
   def sender_positive_balance
-    return if (sender.balance - amount) >= 0
+    return if (sender&.balance.to_f - amount.to_f) >= 0
     errors.add(:sender, :ammount, message: 'has insufficient amount')
   end
 
   def sender_receiver_uniqueness
-    return unless sender == receiver
+    return unless sender_id == receiver_id
     errors.add(:sender, :id, message: 'can not be equal receiver')
   end
 end
