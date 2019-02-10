@@ -7,7 +7,7 @@
       %th{scope: 'col'}= 'Ref'
       %th{scope: 'col'}= 'Description'
   %tbody
-    - @transactions.each_with_index do |transaction|
+    - @transactions.each do |transaction|
       %tr
         %td= transaction.id
         %td= transaction.created_at
