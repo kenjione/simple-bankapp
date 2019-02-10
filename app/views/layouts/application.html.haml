@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Bankapp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-dark.bg-primary
+      = link_to 'Bankapp', root_path, class: 'navbar-brand'
+      - if signed_in?
+        %span.navbar-brand= current_user.email
+        = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-lg active nav-link float-right', role: 'button'
+
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "alert alert-info"
+
+    .container{style: 'padding: 10px'}
+      = yield
