@@ -1,0 +1,6 @@
+.alert.alert-danger
+  = pluralize(@transfer.errors.count, 'error')
+  prohibited this transfer from being performed:
+  %ul
+    - @transfer.errors.full_messages.each do |msg|
+      %li="* #{msg}"

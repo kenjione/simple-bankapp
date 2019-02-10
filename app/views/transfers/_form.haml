@@ -1,0 +1,7 @@
+= simple_form_for Transfer.new, url: transfers_path, remote: true do |f|
+  #transfer_errors
+
+  = f.input :amount, as: :decimal
+  = f.input :receiver_id, collection: available_receivers, label_method: :email
+
+  = f.button :submit, 'Send', class: 'btn btn-primary'
