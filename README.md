@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+> user1 = User.create(email: 'foo@example.com', password: 'qweasdzxc')
+> user2 = User.create(email: 'bar@example.com', password: 'qweasdzxc')
 
-Things you may want to cover:
+> account1 = user1.account
+> account2 = user2.account
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> Credit.new(receiver_id: account1.id, amount: 100000).call
+> Transfer.new(sender_id: account1.id, receiver_id: account2.id, amount: 4000).call
+```
